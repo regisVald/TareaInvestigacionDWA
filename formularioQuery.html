@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegisValdivieso - 106020</title>
+    <!-- Incluye jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Incluye jQuery Validation -->
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <!-- Agrega estilos básicos -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: #d9534f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form id="miFormulario">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" required></textarea>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            $("#miFormulario").validate({
+                rules: {
+                    nombre: {
+                        required: true,
+                        minlength: 3
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    telefono: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 15
+                    },
+                    mensaje: {
+                        required: true
+                    }
+                },
+                messages: {
+                    nombre: {
+                        required: "Por favor, ingresa tu nombre",
+                        minlength: "El nombre debe tener al menos 3 caracteres"
+                    },
+                    email: {
+                        required: "Por favor, ingresa tu correo electrónico",
+                        email: "Ingresa un correo electrónico válido"
+                    },
+                    telefono: {
+                        required: "Por favor, ingresa tu número de teléfono",
+                        minlength: "El número de teléfono debe tener al menos 10 caracteres",
+                        maxlength: "El número de teléfono no debe tener más de 15 caracteres"
+                    },
+                    mensaje: "Por favor, ingresa un mensaje"
+                },
+                submitHandler: function (form) {
+                    alert("Formulario válido. Enviando datos...");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
